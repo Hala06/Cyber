@@ -308,7 +308,7 @@ function StatsDisplay({ title, value, subtitle, icon: Icon, gradient }: {
   title: string;
   value: string | number;
   subtitle?: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
   gradient: [string, string];
 }) {
   const { colors } = useTheme();
