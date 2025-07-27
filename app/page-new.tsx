@@ -2,8 +2,9 @@
 
 import { useGame } from '@/contexts/GameContext';
 import Background3D from '@/components/Background3D';
+import Navigation from '@/components/Navigation';
 import LoginScreen from '@/components/LoginScreen';
-import CyberForgeWelcome from '@/components/CyberForgeWelcome';
+import Dashboard from '@/components/Dashboard';
 
 export default function Home() {
   const { gameState } = useGame();
@@ -20,7 +21,8 @@ export default function Home() {
   return (
     <>
       <Background3D />
-      <CyberForgeWelcome />
+      <Navigation />
+      <Dashboard />
     </>
   );
 }
