@@ -1,14 +1,25 @@
 "use client";
 
-import { Suspense, useRef } from 'react';
-import { Canvas as ReactThreeFiberCanvas } from '@react-three/fiber';
-import { useGLTF, Environment, OrbitControls } from '@react-three/drei';
+"use client";
+
+import dynamic from 'next/dynamic';
+
+// Dynamically import the entire component to avoid SSR issues
+export default dynamic(() => import('./ThreeJSOrbLoader').then(mod => mod.ThreeJSOrbCanvas), {
+  ssr: false,
+  loading: () => (
+    <div className="w-80 h-80 rounded-full bg-cyan-900/20 animate-pulse">
+      <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-400/20 to-purple-600/20" />
+    </div>
+  )
+});
 import { motion } from 'framer-motion';
 import * as THREE from 'three';
 
 // The actual 3D Orb Model Component
 function OrbGLBModel() {
-  const { scene } = useGLTF('/orb.glb');
+  const components = DynamicComponents;
+  const { scene } = components.useGLTF('/orb.glb');
   const orbRef = useRef<THREE.Group>(null);
 
   // Clone the scene to avoid sharing issues
@@ -63,7 +74,7 @@ export default function RealOrb3D() {
 
       {/* 3D Canvas */}
       <div className="absolute top-5 right-5 w-80 h-80 z-50">
-        <ReactThreeFiberCanvas
+        <ThreeCanvas
           camera={{ 
             position: [0, 0, 5], 
             fov: 45,
@@ -116,7 +127,7 @@ export default function RealOrb3D() {
             maxPolarAngle={Math.PI / 2}
             minPolarAngle={Math.PI / 2}
           />
-        </ReactThreeFiberCanvas>
+        </ReactThreeFiber.Canvas>
       </div>
 
       {/* Background glow effect */}
