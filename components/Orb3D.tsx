@@ -5,7 +5,8 @@ import { motion } from 'framer-motion';
 
 // Enhanced CTF Orb with 3D Model Detection
 function CTFOrb3D() {
-  const [modelExists, setModelExists] = useState(false);
+  const [is3DMode, setIs3DMode] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
   
   useEffect(() => {
     // Check if the 3D model exists
@@ -13,7 +14,7 @@ function CTFOrb3D() {
       .then(response => {
         if (response.ok) {
           console.log('✅ orb.glb found! File size:', response.headers.get('content-length'));
-          setModelExists(true);
+          setIs3DMode(true);
         } else {
           console.log('⚠️ orb.glb not accessible, using enhanced fallback');
         }
@@ -23,10 +24,20 @@ function CTFOrb3D() {
       });
   }, []);
 
+  useEffect(() => {
+    setIsLoading(false);
+  }, [is3DMode]);
+
+  if (isLoading) {
+    return <div className="w-32 h-32 rounded-full bg-cyan-900/20 animate-pulse" />;
+  }
+
   return (
     <div className="relative w-32 h-32">
       {/* Main Orb */}
-      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-cyan-600 animate-pulse shadow-2xl" 
+      <div className={`absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400 via-purple-500 to-cyan-600 animate-pulse shadow-2xl ${
+        is3DMode ? 'opacity-80' : 'opacity-100'
+      }`} 
            style={{ 
              boxShadow: '0 0 40px rgba(0, 255, 255, 0.5), 0 0 80px rgba(128, 0, 255, 0.3)',
              filter: 'blur(0.5px)'

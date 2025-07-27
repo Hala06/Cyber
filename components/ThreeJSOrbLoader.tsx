@@ -1,7 +1,6 @@
 "use client";
 
 import { Suspense, useRef, useEffect, useState } from 'react';
-import { motion } from 'framer-motion';
 
 // Dynamic import for Three.js to avoid SSR issues
 const loadThreeJS = async () => {
@@ -50,8 +49,17 @@ function ActualOrbModel({ useFrame, useGLTF }: ThreeComponents) {
   );
 }
 
+interface CanvasProps {
+  camera?: {
+    position: [number, number, number];
+    fov: number;
+  };
+  style?: React.CSSProperties;
+  children?: React.ReactNode;
+}
+
 interface ThreeJSComponents {
-  Canvas: React.ComponentType<any>;
+  Canvas: React.ComponentType<CanvasProps>;
   useFrame: ThreeComponents['useFrame'];
   useGLTF: ThreeComponents['useGLTF'];
 }

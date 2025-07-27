@@ -5,7 +5,6 @@ import { useTheme } from '@/contexts/ThemeContext';
 import { motion } from 'framer-motion';
 import { useRouter } from 'next/navigation';
 import { 
-  Shield, 
   Code, 
   Lock, 
   Globe, 
@@ -18,7 +17,6 @@ import {
   Zap,
   BookOpen,
   Cpu,
-  Terminal,
   Activity
 } from 'lucide-react';
 
