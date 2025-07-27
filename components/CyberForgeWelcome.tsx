@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/contexts/ThemeContext";
+import RealOrb3D from './RealOrb3D';
 import { 
   Zap, 
   Shield, 
@@ -24,89 +25,94 @@ export default function CyberForgeWelcome() {
   const features = [
     {
       icon: Shield,
-      title: "Web Security",
-      description: "Master SQL injection, XSS, and authentication bypasses",
-      challenges: 8,
-      difficulty: "Easy → Hard"
+      title: "Web Exploitation",
+      description: "SQL injection, XSS, CSRF, and authentication bypasses",
+      challenges: 12,
+      difficulty: "Beginner → Expert"
     },
     {
       icon: Lock,
       title: "Cryptography",
-      description: "Decode ciphers, break encryption, and crack hashes",
-      challenges: 6,
-      difficulty: "Medium → Expert"
+      description: "Break ciphers, analyze hashes, and reverse crypto algorithms",
+      challenges: 8,
+      difficulty: "Medium → Elite"
     },
     {
       icon: Eye,
-      title: "Digital Forensics",
-      description: "Analyze network traffic, recover hidden data",
-      challenges: 5,
+      title: "Forensics",
+      description: "Memory dumps, network analysis, and hidden file recovery",
+      challenges: 6,
       difficulty: "Easy → Hard"
     },
     {
       icon: Terminal,
-      title: "Binary Exploitation",
-      description: "Buffer overflows, reverse engineering, pwn challenges",
-      challenges: 4,
-      difficulty: "Hard → Elite"
+      title: "Reverse Engineering",
+      description: "Binary analysis, malware dissection, and pwn challenges",
+      challenges: 5,
+      difficulty: "Hard → Master"
     }
   ];
 
   const stats = [
-    { label: "Active Hackers", value: "2,847", icon: Users },
-    { label: "Total Challenges", value: "23", icon: Target },
-    { label: "Global Rankings", value: "Live", icon: Trophy },
-    { label: "Skill Levels", value: "7", icon: Activity }
+    { label: "Active Hackers", value: "1,247", icon: Users },
+    { label: "CTF Challenges", value: "31", icon: Target },
+    { label: "Flags Captured", value: "8,492", icon: Trophy },
+    { label: "Skill Categories", value: "4", icon: Activity }
   ];
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* Cyber Matrix Background */}
-      <div className="fixed inset-0 pointer-events-none">
-        {/* Animated data streams */}
-        {Array.from({ length: 12 }).map((_, i) => (
-          <motion.div
-            key={`stream-${i}`}
-            className="absolute w-0.5 h-full opacity-20"
-            style={{
-              background: `linear-gradient(180deg, transparent, ${colors.primary}, transparent)`,
-              left: `${(i * 8.33) % 100}%`,
-            }}
-            animate={{
-              y: ["-100%", "100%"],
-            }}
-            transition={{
-              duration: 8 + (i % 4),
-              repeat: Infinity,
-              delay: i * 0.5,
-              ease: "linear"
-            }}
-          />
-        ))}
-
-        {/* Floating cyber particles */}
-        {Array.from({ length: 40 }).map((_, i) => (
-          <motion.div
-            key={`particle-${i}`}
-            className="absolute w-1 h-1 rounded-full"
-            style={{
-              background: colors.primary,
-              left: `${(i * 13) % 100}%`,
-              top: `${(i * 17) % 100}%`,
-            }}
-            animate={{
-              y: [0, -50, 0],
-              opacity: [0, 1, 0],
-              scale: [0, 1.5, 0],
-            }}
-            transition={{
-              duration: 4 + (i % 3),
-              repeat: Infinity,
-              delay: (i * 0.1) % 4,
-            }}
-          />
-        ))}
+      {/* 3D Model Orb - main centerpiece */}
+      <div className="fixed top-1/4 right-5 w-80 h-80 transform opacity-90 pointer-events-none z-20 flex items-center justify-center">
+        <RealOrb3D />
       </div>
+      
+      {/* Subtle background effects - reduced animations */}
+      <div className="fixed inset-0 pointer-events-none">
+        {/* Minimal data streams - reduced from 12 to 4 */}
+        {Array.from({ length: 4 }).map((_, i) => (
+          <motion.div
+          key={`stream-${i}`}
+          className="absolute w-0.5 h-full opacity-10"
+          style={{
+            background: `linear-gradient(180deg, transparent, ${colors.primary}, transparent)`,
+            left: `${(i * 25) % 100}%`,
+          }}
+          animate={{
+            y: ["-100%", "100%"],
+          }}
+          transition={{
+            duration: 12 + (i % 2),
+            repeat: Infinity,
+            delay: i * 2,
+            ease: "linear"
+          }}
+        />
+      ))}
+
+      {/* Reduced floating particles - reduced from 40 to 8 */}
+      {Array.from({ length: 8 }).map((_, i) => (
+        <motion.div
+          key={`particle-${i}`}
+          className="absolute w-1 h-1 rounded-full"
+          style={{
+            background: colors.primary,
+            left: `${(i * 15) % 100}%`,
+            top: `${(i * 20) % 100}%`,
+          }}
+          animate={{
+            y: [0, -30, 0],
+            opacity: [0, 0.6, 0],
+            scale: [0, 1, 0],
+          }}
+          transition={{
+            duration: 6 + (i % 2),
+            repeat: Infinity,
+            delay: (i * 0.5) % 3,
+          }}
+        />
+      ))}
+    </div>
 
       <div className="relative z-10 min-h-screen flex flex-col">
         {/* Header */}
@@ -133,7 +139,7 @@ export default function CyberForgeWelcome() {
                   CyberForge
                 </h1>
                 <p className="text-xs" style={{ color: colors.textSecondary }}>
-                  Neural CTF Platform
+                  Elite CTF Platform
                 </p>
               </div>
             </motion.div>
@@ -150,7 +156,7 @@ export default function CyberForgeWelcome() {
               }}
             >
               <Terminal className="w-4 h-4" />
-              Enter the Matrix
+              Start Hacking
               <ArrowRight className="w-4 h-4" />
             </motion.button>
           </div>
@@ -178,14 +184,6 @@ export default function CyberForgeWelcome() {
                 style={{
                   backgroundImage: `linear-gradient(135deg, ${colors.secondary}, ${colors.primary})`
                 }}
-                animate={{
-                  textShadow: [
-                    `0 0 20px ${colors.glow}40`,
-                    `0 0 40px ${colors.glow}60`,
-                    `0 0 20px ${colors.glow}40`
-                  ]
-                }}
-                transition={{ duration: 3, repeat: Infinity }}
               >
                 CyberForge
               </motion.h2>
@@ -199,11 +197,41 @@ export default function CyberForgeWelcome() {
               className="text-xl md:text-2xl mb-12 max-w-3xl mx-auto leading-relaxed"
               style={{ color: colors.textSecondary }}
             >
-              Step into the <span style={{ color: colors.primary }}>quantum realm</span> of cybersecurity. 
-              Master <span style={{ color: colors.secondary }}>neural hacking</span> techniques, 
-              climb the <span style={{ color: colors.primary }}>digital leaderboard</span>, 
-              and become the ultimate <span style={{ color: colors.secondary }}>cyber warrior</span>.
+              Enter the <span style={{ color: colors.primary }}>cyber battlefield</span> where hackers forge their skills. 
+              Master <span style={{ color: colors.secondary }}>penetration testing</span>, 
+              crack <span style={{ color: colors.primary }}>cryptographic challenges</span>, 
+              and rise through the <span style={{ color: colors.secondary }}>hacker ranks</span>.
             </motion.p>
+
+            {/* CTF Status Banner */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+              className="mb-8 p-4 rounded-lg border"
+              style={{
+                background: `linear-gradient(135deg, ${colors.surface}40, ${colors.surface}20)`,
+                border: `1px solid ${colors.primary}40`,
+                backdropFilter: 'blur(10px)'
+              }}
+            >
+              <div className="flex items-center justify-center gap-4 text-sm">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  <span style={{ color: colors.text }}>CTF Competition: LIVE</span>
+                </div>
+                <div className="h-4 w-px" style={{ background: colors.border }} />
+                <div className="flex items-center gap-2">
+                  <Target className="w-4 h-4" style={{ color: colors.primary }} />
+                  <span style={{ color: colors.textSecondary }}>New challenges unlocked</span>
+                </div>
+                <div className="h-4 w-px" style={{ background: colors.border }} />
+                <div className="flex items-center gap-2">
+                  <Users className="w-4 h-4" style={{ color: colors.secondary }} />
+                  <span style={{ color: colors.textSecondary }}>847 hackers online</span>
+                </div>
+              </div>
+            </motion.div>
 
             {/* Action Buttons */}
             <motion.div
@@ -224,7 +252,7 @@ export default function CyberForgeWelcome() {
                 }}
               >
                 <Zap className="w-5 h-5" />
-                Start Your Journey
+                Begin CTF Journey
                 <ArrowRight className="w-5 h-5" />
               </motion.button>
 
@@ -241,7 +269,7 @@ export default function CyberForgeWelcome() {
                 }}
               >
                 <Trophy className="w-5 h-5" />
-                View Rankings
+                View Leaderboard
               </motion.button>
             </motion.div>
           </div>
@@ -305,7 +333,7 @@ export default function CyberForgeWelcome() {
               className="text-3xl font-bold text-center mb-12"
               style={{ color: colors.text }}
             >
-              Master the <span style={{ color: colors.primary }}>Cyber Arts</span>
+              Master the <span style={{ color: colors.primary }}>Hacker Arts</span>
             </h3>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">

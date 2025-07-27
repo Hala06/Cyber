@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useGame } from "@/contexts/GameContext";
 import Navigation from "@/components/Navigation";
+import CyberAnimations from "@/components/CyberAnimations";
 import { 
   Trophy,
   Target,
@@ -97,7 +98,8 @@ export default function Dashboard() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen pt-20 p-6 relative overflow-hidden">
+      <CyberAnimations variant="grid" intensity="low">
+        <div className="min-h-screen pt-20 p-6 relative overflow-hidden">
         {/* Animated background */}
         <div className="fixed inset-0 pointer-events-none">
           {Array.from({ length: 20 }).map((_, i) => (
@@ -514,6 +516,7 @@ export default function Dashboard() {
           </div>
         </div>
       </div>
+      </CyberAnimations>
     </>
   );
 }

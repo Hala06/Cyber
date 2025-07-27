@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useTheme } from "@/contexts/ThemeContext";
 import { useGame } from "@/contexts/GameContext";
 import Navigation from "@/components/Navigation";
+import CyberAnimations from "@/components/CyberAnimations";
 import { 
   ArrowLeft,
   Code,
@@ -151,7 +152,8 @@ export default function AllChallenges() {
   return (
     <>
       <Navigation />
-      <div className="min-h-screen pt-20 p-6 relative overflow-hidden">
+      <CyberAnimations variant="particles" intensity="low">
+        <div className="min-h-screen pt-20 p-6 relative overflow-hidden">
         {/* Animated background */}
         <div className="fixed inset-0 pointer-events-none">
           {Array.from({ length: 25 }).map((_, i) => (
@@ -413,6 +415,7 @@ export default function AllChallenges() {
           </motion.div>
         </div>
       </div>
+      </CyberAnimations>
     </>
   );
 }

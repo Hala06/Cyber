@@ -211,20 +211,23 @@ export default function LoginScreen() {
                       value={username}
                       onChange={(e) => setUsername(e.target.value)}
                       placeholder="Enter neural ID..."
-                      className="w-full pl-12 pr-4 py-4 rounded-xl text-lg font-medium transition-all duration-300 focus:outline-none"
+                      className="w-full pl-12 pr-4 py-4 rounded-xl text-lg font-medium transition-all duration-300 focus:outline-none placeholder:opacity-60"
                       style={{
-                        background: `linear-gradient(135deg, ${colors.surface}40, ${colors.surface}20)`,
+                        background: `linear-gradient(135deg, ${colors.surface}80, ${colors.surface}60)`,
                         border: `2px solid ${colors.border}`,
                         color: colors.text,
-                        backdropFilter: 'blur(10px)'
+                        backdropFilter: 'blur(10px)',
+                        caretColor: colors.primary
                       }}
                       onFocus={(e) => {
                         e.target.style.borderColor = colors.primary;
                         e.target.style.boxShadow = `0 0 20px ${colors.glow}40`;
+                        e.target.style.background = `linear-gradient(135deg, ${colors.surface}90, ${colors.surface}70)`;
                       }}
                       onBlur={(e) => {
                         e.target.style.borderColor = colors.border;
                         e.target.style.boxShadow = 'none';
+                        e.target.style.background = `linear-gradient(135deg, ${colors.surface}80, ${colors.surface}60)`;
                       }}
                     />
                   </motion.div>
