@@ -1,11 +1,10 @@
 "use client";
 
-"use client";
-
 import dynamic from 'next/dynamic';
+import { motion } from 'framer-motion';
 
 // Dynamically import the entire component to avoid SSR issues
-export default dynamic(() => import('./ThreeJSOrbLoader').then(mod => mod.ThreeJSOrbCanvas), {
+const OrbCanvas = dynamic(() => import('./ThreeJSOrbLoader').then(mod => mod.ThreeJSOrbCanvas), {
   ssr: false,
   loading: () => (
     <div className="w-80 h-80 rounded-full bg-cyan-900/20 animate-pulse">
@@ -13,47 +12,6 @@ export default dynamic(() => import('./ThreeJSOrbLoader').then(mod => mod.ThreeJ
     </div>
   )
 });
-import { motion } from 'framer-motion';
-import * as THREE from 'three';
-
-// The actual 3D Orb Model Component
-function OrbGLBModel() {
-  const components = DynamicComponents;
-  const { scene } = components.useGLTF('/orb.glb');
-  const orbRef = useRef<THREE.Group>(null);
-
-  // Clone the scene to avoid sharing issues
-  const clonedScene = scene.clone();
-
-  // Apply holographic material properties
-  clonedScene.traverse((child: THREE.Object3D) => {
-    if (child instanceof THREE.Mesh) {
-      if (child.material) {
-        // Create holographic material
-        const material = child.material as THREE.MeshStandardMaterial;
-        material.transparent = true;
-        material.opacity = 0.8;
-        material.metalness = 0.9;
-        material.roughness = 0.1;
-        material.envMapIntensity = 2;
-        
-        // Add cyan/blue holographic tint
-        material.color = new THREE.Color(0x00ffff);
-        material.emissive = new THREE.Color(0x004466);
-        material.emissiveIntensity = 0.3;
-      }
-    }
-  });
-
-  return (
-    <primitive 
-      ref={orbRef}
-      object={clonedScene} 
-      scale={[1.5, 1.5, 1.5]}
-      position={[0, 0, 0]}
-    />
-  );
-}
 
 // Main 3D Orb Component
 export default function RealOrb3D() {
@@ -74,60 +32,7 @@ export default function RealOrb3D() {
 
       {/* 3D Canvas */}
       <div className="absolute top-5 right-5 w-80 h-80 z-50">
-        <ThreeCanvas
-          camera={{ 
-            position: [0, 0, 5], 
-            fov: 45,
-            near: 0.1,
-            far: 100
-          }}
-          dpr={[1, 2]}
-          style={{ 
-            background: 'transparent',
-            width: '100%',
-            height: '100%'
-          }}
-        >
-          {/* Lighting setup for holographic effect */}
-          <ambientLight intensity={0.4} color="#004466" />
-          <pointLight 
-            position={[10, 10, 10]} 
-            intensity={1} 
-            color="#00ffff"
-            castShadow
-          />
-          <pointLight 
-            position={[-10, -10, -10]} 
-            intensity={0.5} 
-            color="#0066ff"
-          />
-          <spotLight
-            position={[0, 10, 0]}
-            angle={0.3}
-            penumbra={1}
-            intensity={1}
-            color="#00ffff"
-            castShadow
-          />
-
-          {/* Environment for reflections */}
-          <Environment preset="city" />
-
-          {/* The 3D Orb Model */}
-          <Suspense fallback={null}>
-            <OrbGLBModel />
-          </Suspense>
-
-          {/* Interactive controls */}
-          <OrbitControls
-            enableZoom={false}
-            enablePan={false}
-            autoRotate
-            autoRotateSpeed={0.5}
-            maxPolarAngle={Math.PI / 2}
-            minPolarAngle={Math.PI / 2}
-          />
-        </ReactThreeFiber.Canvas>
+        <OrbCanvas />
       </div>
 
       {/* Background glow effect */}
@@ -144,17 +49,4 @@ export default function RealOrb3D() {
       </div>
     </motion.div>
   );
-}
-
-// Preload the GLTF model
-useGLTF.preload('/orb.glb');
-
-import { createRoot } from 'react-dom/client';
-
-if (typeof window !== 'undefined') {
-  const container = document.getElementById('root');
-  if (container) {
-    const root = createRoot(container);
-    root.render(<RealOrb3D />);
-  }
 }
