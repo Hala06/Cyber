@@ -40,92 +40,37 @@ export default function AllChallenges() {
   const challenges: Challenge[] = [
     {
       id: 1,
-      title: "Neural SQL Injection",
-      description: "Infiltrate the database through quantum SQL vulnerabilities",
-      category: "Web Security",
+      title: "SHA256 Hash Encryption",
+      description: "Encrypt 'boot.dev' into a SHA256 hash",
+      category: "SHA256 Hash",
       difficulty: "Easy",
       points: 100,
       level: 1,
       icon: Code,
-      tags: ["SQL", "Web", "Database"]
+      tags: ["Encryption", "SHA256 Hash"]
     },
     {
       id: 2,
-      title: "XSS Quantum Bypass",
-      description: "Breach dimensional XSS protection protocols",
-      category: "Web Security",
+      title: "Hex ASCII Decryption",
+      description: "Hex color #7072496d454167456e hides a word when converted to ASCII. What is it?",
+      category: "ASCII",
       difficulty: "Medium",
       points: 200,
-      level: 2,
+      level: 1,
       icon: Shield,
-      tags: ["XSS", "JavaScript", "Web"]
+      tags: ["ASCII", "Hexidecimal"]
     },
     {
       id: 3,
-      title: "Digital Forensics Matrix",
-      description: "Trace data fragments through the cyber-matrix",
-      category: "Forensics",
-      difficulty: "Easy",
-      points: 150,
+      title: "Morse API Call",
+      description: "Translate the following Morse code: .... .- -.-. -.- .- - .... --- -.",
+      category: "Morse",
+      difficulty: "Medium",
+      points: 200,
       level: 1,
       icon: Eye,
-      tags: ["Forensics", "Analysis", "Data"]
+      tags: ["Decryption", "Morse"]
     },
-    {
-      id: 4,
-      title: "Crypto Hash Cracker",
-      description: "Decode ancient encryption algorithms from the old web",
-      category: "Cryptography",
-      difficulty: "Medium",
-      points: 250,
-      level: 3,
-      icon: Lock,
-      tags: ["Crypto", "Hash", "Algorithms"]
-    },
-    {
-      id: 5,
-      title: "Binary Buffer Overflow",
-      description: "Exploit memory corruption in quantum processors",
-      category: "Binary Exploitation",
-      difficulty: "Hard",
-      points: 400,
-      level: 5,
-      icon: Database,
-      tags: ["Binary", "Memory", "Exploitation"]
-    },
-    {
-      id: 6,
-      title: "Authentication Bypass",
-      description: "Circumvent neural authentication protocols",
-      category: "Web Security",
-      difficulty: "Easy",
-      points: 120,
-      level: 1,
-      icon: Shield,
-      tags: ["Auth", "Bypass", "Web"]
-    },
-    {
-      id: 7,
-      title: "Steganography Hunt",
-      description: "Find hidden messages in digital artifacts",
-      category: "Forensics",
-      difficulty: "Medium",
-      points: 180,
-      level: 2,
-      icon: Eye,
-      tags: ["Steganography", "Hidden", "Images"]
-    },
-    {
-      id: 8,
-      title: "Network Traffic Analysis",
-      description: "Analyze intercepted network communications",
-      category: "Forensics",
-      difficulty: "Hard",
-      points: 350,
-      level: 4,
-      icon: Database,
-      tags: ["Network", "Traffic", "Analysis"]
-    }
   ];
 
   const categories = [...new Set(challenges.map(c => c.category))];
