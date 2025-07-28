@@ -61,14 +61,40 @@ body {
 
 /* Button styles */
 .btn-primary {
-  @apply bg-gradient-to-r from-accent to-neon-purple text-white font-semibold py-3 px-6 rounded-xl;
-  @apply hover:from-neon-purple hover:to-accent transition-all duration-300;
-  @apply transform hover:scale-105 hover:shadow-glow;
+  background: linear-gradient(to right, var(--tw-gradient-stops));
+  color: #fff;
+  font-weight: 600;
+  padding-top: 0.75rem;
+  padding-bottom: 0.75rem;
+  padding-left: 1.5rem;
+  padding-right: 1.5rem;
+  border-radius: 0.75rem;
+  transition: all 0.3s;
+  transform: none;
+}
+.btn-primary:hover {
+  background: linear-gradient(to right, var(--tw-gradient-stops));
+  /* Adjust gradient stops for hover if needed */
+  transform: scale(1.05);
+  box-shadow: 0 0 10px #8b5cf6, 0 0 20px #6366f1;
 }
 
 .btn-secondary {
-  @apply bg-dark-gray/50 border border-gray-700 text-gray-300 font-medium py-2 px-4 rounded-lg;
-  @apply hover:bg-light-gray/50 hover:border-gray-600 hover:text-white transition-all duration-300;
+  background: rgba(31, 41, 55, 0.5); /* dark-gray/50 */
+  border: 1px solid #374151; /* gray-700 */
+  color: #d1d5db; /* gray-300 */
+  font-weight: 500;
+  padding-top: 0.5rem;
+  padding-bottom: 0.5rem;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+}
+.btn-secondary:hover {
+  background: rgba(243, 244, 246, 0.5); /* light-gray/50 */
+  border-color: #4b5563; /* gray-600 */
+  color: #fff;
 }
 
 /* Animation utilities */

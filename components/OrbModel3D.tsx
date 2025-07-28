@@ -25,7 +25,7 @@ function CyberOrbCTF() {
   
   return (
     <motion.div
-      className="relative w-32 h-32"
+      className="relative w-full h-full"
       animate={{
         rotateY: [0, 360],
       }}
@@ -184,12 +184,12 @@ export default function OrbModel3D({ className = "" }: { className?: string }) {
   }, []);
   
   if (!mounted) {
-    return <div className={`w-32 h-32 ${className}`} />;
+    return <div className={`w-full h-full ${className}`} />;
   }
   
   return (
     <div className={`${className}`}>
-      <Suspense fallback={<div className="w-32 h-32 rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 animate-pulse" />}>
+      <Suspense fallback={<div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-500 to-purple-600 animate-pulse" />}>
         <CyberOrbCTF />
       </Suspense>
     </div>

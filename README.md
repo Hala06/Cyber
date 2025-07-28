@@ -1,36 +1,44 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+🎨 PuzzleBox UI (Frontend)
+This is the frontend for PuzzleBox — a gamified, multi-step API puzzle game where users solve HTTP-based challenges through an immersive, futuristic interface. Built with Next.js 14 (App Router), TailwindCSS, and Framer Motion, the UI mimics a hacker-style terminal + puzzle dashboard experience, complete with animations, score tracking, and level progression.
 
-## Getting Started
+🚀 Getting Started
+🧰 Prerequisites
+Node.js 18+
 
-First, run the development server:
+npm or yarn
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Backend running locally on http://localhost:5248 
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+🕹️ Features
+🔐 API-driven puzzle challenges (GET/POST logic)
 
-## Learn More
+✨ Animated UI styled in a cyberpunk/hacker aesthetic
 
-To learn more about Next.js, take a look at the following resources:
+💻 Terminal-based challenge solving (/terminal)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+📊 Real-time progress dashboard with XP bars
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🧩 Dynamically rendered challenge routes (/challenges/[id])
 
-## Deploy on Vercel
+🔄 Easy integration with external API backends
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+📦 Tech Stack
+Frontend: Next.js (App Router), TailwindCSS, Framer Motion
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Backend: C# ASP.NET Core API (repo)
+
+Deployment: Vercel (Frontend), Render/Azure (Backend)
+
+👥 Authors
+Malone — Backend Engineer (C#, API Design)
+
+Rae — Frontend Engineer (Next.js, UX/UI)
+
+✅ Todo
+Add persistent scoring via localStorage or backend
+Add animated puzzle success transitions
+Improve mobile responsiveness
+Clerk-based login system
+
