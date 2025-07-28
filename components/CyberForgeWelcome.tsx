@@ -5,7 +5,7 @@ import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/contexts/ThemeContext";
 // ...existing code...
-const ThreeJSOrbLoader = dynamic(() => import("./ThreeJSOrbLoader"), { ssr: false });
+const OrbModel3D = dynamic(() => import("./OrbModel3D"), { ssr: false });
 import { 
   Zap, 
   Shield, 
@@ -187,7 +187,7 @@ export default function CyberForgeWelcome() {
                   transition: 'all 0.5s cubic-bezier(.4,2,.6,1)',
                 }}
               >
-                <ThreeJSOrbLoader className="w-full h-full" style={{ filter: 'brightness(1.35) blur(0.1px)' }} />
+                <OrbModel3D className="w-full h-full brightness-[1.35] blur-[0.1px]" />
               </div>
             </div>
             {/* Main Title */}

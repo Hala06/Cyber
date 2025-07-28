@@ -15,7 +15,6 @@ import {
   Shield,
   Eye
 } from "lucide-react";
-import { describe } from "node:test";
 
 interface ChallengeData {
   title: string;
@@ -27,7 +26,7 @@ interface ChallengeData {
   icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
 }
 
-const iconMap: Record<number, React.ComponentType<any>> = {
+const iconMap: Record<number, React.ComponentType<{ className?: string; style?: React.CSSProperties }>> = {
   1: Code,
   2: Shield,
   3: Eye,

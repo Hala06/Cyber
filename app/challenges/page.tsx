@@ -11,7 +11,6 @@ import {
   Code,
   Shield,
   Eye,
-  Database,
   Lock,
   Trophy,
   Star,
