@@ -15,6 +15,7 @@ import {
   Shield,
   Eye
 } from "lucide-react";
+import { describe } from "node:test";
 
 interface ChallengeData {
   title: string;
@@ -25,6 +26,12 @@ interface ChallengeData {
   answer: string;
   icon: React.ComponentType<{ className?: string; style?: React.CSSProperties }>;
 }
+
+const iconMap: Record<number, React.ComponentType<any>> = {
+  1: Code,
+  2: Shield,
+  3: Eye,
+};
 
 export default function ChallengeDetail() {
   const { id } = useParams();
@@ -39,50 +46,27 @@ export default function ChallengeDetail() {
   const [challengeData, setChallengeData] = useState<ChallengeData | null>(null);
 
   useEffect(() => {
-    // Mock challenge data
-    const mockChallenges: Record<string, ChallengeData> = {
-      "1": {
-        title: "Neural SQL Injection",
-        description: "Infiltrate the database through quantum SQL vulnerabilities",
-        difficulty: "Easy",
-        points: 100,
-        clue: "The login form accepts any input. Try bypassing authentication with SQL injection. Hint: ' OR '1'='1",
-        answer: "admin' OR '1'='1' --",
-        icon: Code
-      },
-      "2": {
-        title: "XSS Quantum Bypass",
-        description: "Breach dimensional XSS protection protocols",
-        difficulty: "Medium", 
-        points: 200,
-        clue: "Find a way to execute JavaScript in the comment field. The filter blocks <script> tags.",
-        answer: "<img src=x onerror=alert('XSS')>",
-        icon: Shield
-      },
-      "3": {
-        title: "Digital Forensics Matrix",
-        description: "Trace data fragments through the cyber-matrix",
-        difficulty: "Easy",
-        points: 150,
-        clue: "Examine the network traffic logs. Look for suspicious base64 encoded data.",
-        answer: "dGVzdF9mbGFn",
-        icon: Eye
+  const fetchChallenge = async () => {
+    try {
+      const res = await fetch(`http://localhost:5248/api/puzzle/challenge/${id}`);
+      if (!res.ok) {
+        setClue("Failed to load challenge.");
+        return;
       }
-    };
+      const data = await res.json();
+      setChallengeData({
+          ...data,
+          icon: iconMap[data.iconKey] || Code,
+      });
+      setClue(data.clue);
+    } catch (err) {
+      console.error(err);
+      setClue("Error connecting to backend.");
+    }
+  };
 
-    // Simulate loading
-    const timer = setTimeout(() => {
-      const challenge = mockChallenges[id as string];
-      if (challenge) {
-        setChallengeData(challenge);
-        setClue(challenge.clue);
-      } else {
-        setClue("Neural pathway not found. Challenge does not exist.");
-      }
-    }, 1500);
-
-    return () => clearTimeout(timer);
-  }, [id]);
+  fetchChallenge();
+}, [id]);
 
   const submitAnswer = async () => {
     if (!challengeData) return;
@@ -90,16 +74,26 @@ export default function ChallengeDetail() {
     setLoading(true);
     setFeedback("");
 
-    // Simulate network delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    try {
+      const res = await fetch(`http://localhost:5248/api/puzzle/level${id}`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ answer: userInput }),
+      });
 
-    if (userInput.toLowerCase().includes(challengeData.answer.toLowerCase())) {
-      setFeedback("✅ Neural pathway secured! Quantum credits transferred...");
-      updateScore(challengeData.points);
-      setTimeout(() => router.push("/dashboard"), 2000);
-    } else {
-      setFeedback("❌ Access denied. Neural pattern mismatch detected.");
-    }
+      const data = await res.json();
+
+      if (res.ok && data.success) {
+        setFeedback("✅ " + data.message);
+        updateScore(challengeData.points);
+        setTimeout(() => router.push("/dashboard"), 2000);
+      } else {
+        setFeedback("❌ " + (data.message || "Incorrect answer."));
+      }
+    } catch (err) {
+      setFeedback("❌ Backend error. Check server connection.");
+      console.error(err);
+  }
     
     setLoading(false);
   };
