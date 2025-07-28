@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/contexts/ThemeContext";
-import RealOrb3D from './RealOrb3D';
+import { ThreeJSOrbCanvas } from './ThreeJSOrbLoader';
 import { 
   Zap, 
   Shield, 
@@ -62,9 +62,9 @@ export default function CyberForgeWelcome() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* 3D Model Orb - main centerpiece */}
-      <div className="fixed top-1/4 right-5 w-80 h-80 transform opacity-90 pointer-events-none z-20 flex items-center justify-center">
-        <RealOrb3D />
+      {/* 3D Model Orb - positioned above stats section, more visible */}
+      <div className="absolute top-[60%] right-20 w-64 h-64 z-30 bg-cyan-500/10 rounded-full border border-cyan-400/20">
+        <ThreeJSOrbCanvas />
       </div>
       
       {/* Subtle background effects - reduced animations */}
