@@ -1,9 +1,11 @@
 "use client";
 
 import { motion } from "framer-motion";
+import dynamic from "next/dynamic";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/contexts/ThemeContext";
-// import { ThreeJSOrbCanvas } from './ThreeJSOrbLoader';
+// ...existing code...
+const ThreeJSOrbLoader = dynamic(() => import("./ThreeJSOrbLoader"), { ssr: false });
 import { 
   Zap, 
   Shield, 
@@ -17,6 +19,7 @@ import {
   Cpu,
   Activity
 } from "lucide-react";
+// ...existing code...
 
 export default function CyberForgeWelcome() {
   const router = useRouter();
@@ -164,7 +167,29 @@ export default function CyberForgeWelcome() {
 
         {/* Hero Section */}
         <div className="flex-1 flex items-center justify-center px-6">
-          <div className="max-w-6xl mx-auto text-center">
+          <div className="max-w-6xl mx-auto text-center relative">
+            {/* 3D Orb Model - subtle accent, floating upper right */}
+            <div className="pointer-events-none select-none">
+              <div
+                className="absolute z-20 transition-all duration-500"
+                style={{
+                  top: 'min(2vw, 32px)',
+                  left: 'calc(80% + 12vw)', // further right
+                  width: 'clamp(120px, 18vw, 190px)',
+                  height: 'clamp(120px, 18vw, 190px)',
+                  opacity: 0.92,
+                  borderRadius: '50%',
+                  boxShadow: '0 12px 80px 0 #00fff555, 0 0 0 2px #00fff522',
+                  background: 'radial-gradient(circle at 60% 40%, #00fff555 0%, #7f00ff22 60%, transparent 100%)',
+                  backdropFilter: 'blur(2px)',
+                  pointerEvents: 'none',
+                  filter: 'brightness(1.35) blur(0.1px)',
+                  transition: 'all 0.5s cubic-bezier(.4,2,.6,1)',
+                }}
+              >
+                <ThreeJSOrbLoader className="w-full h-full" style={{ filter: 'brightness(1.35) blur(0.1px)' }} />
+              </div>
+            </div>
             {/* Main Title */}
             <motion.div
               initial={{ opacity: 0, y: 50 }}
