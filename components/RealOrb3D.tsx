@@ -1,17 +1,7 @@
 "use client";
 
-import dynamic from 'next/dynamic';
-import { motion } from 'framer-motion';
 
-// Dynamically import the entire component to avoid SSR issues
-const OrbCanvas = dynamic(() => import('./ThreeJSOrbLoader').then(mod => mod.ThreeJSOrbCanvas), {
-  ssr: false,
-  loading: () => (
-    <div className="w-80 h-80 rounded-full bg-cyan-900/20 animate-pulse">
-      <div className="w-full h-full rounded-full bg-gradient-to-br from-cyan-400/20 to-purple-600/20" />
-    </div>
-  )
-});
+import { motion } from 'framer-motion';
 
 // Main 3D Orb Component
 export default function RealOrb3D() {
@@ -26,13 +16,8 @@ export default function RealOrb3D() {
       <div className="absolute top-2 left-2 z-10 text-xs font-mono text-cyan-400 bg-black/20 px-2 py-1 rounded border border-cyan-500/30">
         <div className="flex items-center gap-2">
           <div className="w-2 h-2 bg-cyan-400 rounded-full animate-pulse" />
-          HOLOGRAPHIC ORB ACTIVE
+          HOLOGRAPHIC ORB INACTIVE
         </div>
-      </div>
-
-      {/* 3D Canvas */}
-      <div className="absolute top-5 right-5 w-80 h-80 z-50">
-        <OrbCanvas />
       </div>
 
       {/* Background glow effect */}
