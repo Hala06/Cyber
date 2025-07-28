@@ -12,7 +12,7 @@ export function ThreeJSOrbCanvas() {
 
     console.log('🚀 Initializing Three.js orb loader...');
 
-    let scene: any, camera: any, renderer: any, orb: any;
+    let scene: unknown, camera: unknown, renderer: unknown, orb: unknown;
     let animationId: number;
 
     const initThreeJS = async () => {

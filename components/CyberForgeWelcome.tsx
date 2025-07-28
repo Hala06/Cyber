@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import { useRouter } from "next/navigation";
 import { useTheme } from "@/contexts/ThemeContext";
-import { ThreeJSOrbCanvas } from './ThreeJSOrbLoader';
+// import { ThreeJSOrbCanvas } from './ThreeJSOrbLoader';
 import { 
   Zap, 
   Shield, 
@@ -62,10 +62,10 @@ export default function CyberForgeWelcome() {
 
   return (
     <div className="min-h-screen relative overflow-hidden">
-      {/* 3D Model Orb - positioned above stats section, more visible */}
-      <div className="absolute top-[60%] right-20 w-64 h-64 z-30 bg-cyan-500/10 rounded-full border border-cyan-400/20">
+      {/* 3D Model Orb - temporarily disabled for build */}
+      {/* <div className="absolute top-[60%] right-20 w-64 h-64 z-30 bg-cyan-500/10 rounded-full border border-cyan-400/20">
         <ThreeJSOrbCanvas />
-      </div>
+      </div> */}
       
       {/* Subtle background effects - reduced animations */}
       <div className="fixed inset-0 pointer-events-none">
