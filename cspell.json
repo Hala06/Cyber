@@ -10,7 +10,11 @@
     "Steganography",
     "cyberforge",
     "Fira",
-    "Consolas"
+    "Consolas",
+    "puzzlebox",
+    "turbopack",
+    "gamified",
+    "Hexidecimal"
   ],
   "ignorePaths": [
     "node_modules/**",
