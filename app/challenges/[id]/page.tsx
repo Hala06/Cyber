@@ -47,7 +47,7 @@ export default function ChallengeDetail() {
   useEffect(() => {
   const fetchChallenge = async () => {
     try {
-      const res = await fetch(`https://puzzleBox/api/puzzle/challenge/${id}`);
+      const res = await fetch(`https://puzzlebox.onrender.com/api/puzzle/challenge/${id}`);
       if (!res.ok) {
         setClue("Failed to load challenge.");
         return;
@@ -74,7 +74,7 @@ export default function ChallengeDetail() {
     setFeedback("");
 
     try {
-      const res = await fetch(`https://puzzleBox/api/puzzle/level${id}`, {
+      const res = await fetch(`https://puzzlebox.onrender.com/api/puzzle/level${id}`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ answer: userInput }),
